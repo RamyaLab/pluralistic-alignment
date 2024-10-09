@@ -1,0 +1,14 @@
+d_hid: 1024
+d_pref: 1024
+k: 2
+llm_name: 'BAAI/bge-m3'
+pref_learner_type: 'angle'
+proj_arch: 'mlp2-gelu-dropout0'
+initializer_type: 'gaussian'
+is_expectation_norm_init: False
+sfx_type: 'softmax'
+sfx_temperature: 1.
+is_temperature_learnable: False
+is_gumbel_hard: None
+seed: 42
+bs: 4

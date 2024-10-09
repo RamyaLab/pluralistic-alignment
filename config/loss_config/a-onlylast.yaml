@@ -1,0 +1,6 @@
+
+
+loss_type: 'hinge'
+loss_weighting: 'only_last'
+upper_bound: 4.
+lmd: 1.    # the weight of the bound loss

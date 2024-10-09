@@ -1,0 +1,10 @@
+
+*.log
+*.wandb
+
+/llm-data
+/wandb
+/wandb-llm-rm-log
+/logs
+/ckpts
+/logs_wandb

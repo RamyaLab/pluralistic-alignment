@@ -1,0 +1,8 @@
+
+
+dataset_name: 'openai/summarize_from_feedback'
+ds_output_path: '/home/daiwei/research/diverse-alignment/refactored-diverse-alignment/llm-data'
+user_ids_path: '/home/daiwei/research/diverse-alignment/refactored-diverse-alignment/llm-data/summary_uids.json'
+end_of_conversation_token: '<|endoftext|>'
+max_seq_len: 512
+

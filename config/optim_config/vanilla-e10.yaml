@@ -1,0 +1,26 @@
+
+epochs_new_pair: 10
+epochs_new_user: 10
+warmup_ratio: 0.1
+optimizer_hyperparams:
+  llm:
+    lr: 9.65e-6
+    weight_decay: 0.0
+  projector_f:
+    lr: 1e-4
+    weight_decay: 0.01
+  projectors_gk:
+    lr: 1e-4
+    weight_decay: 0.01
+  P:
+    lr: 5e-3
+    weight_decay: 0.0
+  W:
+    lr: 5e-3
+    weight_decay: 0.0
+  logit_scale:
+    lr: 1e-1
+    weight_decay: 0.0
+  temperature:
+    lr: 1e-1
+    weight_decay: 0.0
