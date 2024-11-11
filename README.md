@@ -1,4 +1,4 @@
-# PAL: Personalized Reward Modeling / Pluralistic Alignment Framework
+# PAL: <span style="font-size: 1.5em; color: #1E90FF;">P</span>luralistic <span style="font-size: 1.5em; color: #1E90FF;">AL</span>ignment Framework
 
 Sample-Efficient Personalized Reward Modeling for Pluralistic Alignment
 
@@ -23,6 +23,7 @@ This repository contains the code for ***<u>PAL</u>*** (Personalized Alignment L
 - [Installation](#Installation)
 - [Usage](#usage)
   - [Data Preparation](##data-preparation)
+  - [Configurations](##configurations)
   - [Training](##training)
   - [Evaluation](##evaluation)
   - [Integration](##integration)
@@ -57,7 +58,7 @@ This repository contains the code for ***<u>PAL</u>*** (Personalized Alignment L
    pip install -r requirements.txt
    ```
 
-> Ensure your environment supports **PyTorch** and **CUDA** (if you are using GPU acceleration). The requirements.txt contains detailed package versions and setup instructions.
+> Notice: Ensure your environment supports **PyTorch** and **CUDA** (if you are using GPU acceleration). The requirements.txt contains detailed package versions and setup instructions.
 
  # Usage 🧰
 
@@ -65,9 +66,27 @@ This repository contains the code for ***<u>PAL</u>*** (Personalized Alignment L
 
 Compared with typical preference datasets, each sample should also contain the `user_id` to learn each user's preference. The format of each sample should be `(user_id, prompt, (response_1), (response_2)),y`, where `user_id` is a unique identifier (string) for a specific user,  `prompt`, `response_1`, `response_2` are texts or other modalities,  $y\in \{-1, 1\}$ represents the user's preference. (Notice:  modify `dataset_factory.py` is required for your customized datasets).
 
-🎯 For detailed implementation, please refer to `dataset_factory.py`.
+*<u>🎯 For detailed implementation, please refer to `dataset_factory.py`.</u>*
+
+## Configurations
+
+
+
+
 
 ## Training
+
+```sh
+# Train PAL-B-Tiny (Tiny: fix the foundation model and only learn the projectors + user weights)
+CUDA_VISIBLE_DEVICES=0 python -m main_pal_b.py --
+
+# Train PAL-B-Large (Large: finetune the foundation + projectors + user weights)
+CUDA_VISIBLE_DEVICES=0 python -m main_pal_b_fix_llm.py --
+
+# New User Generalization (Only learn the weights of new users)
+CUDA_VISIBLE_DEVICES=0 python -m main_pal_b_unseen.py --
+
+```
 
 
 
