@@ -2,7 +2,7 @@
 # -*-coding:utf-8 -*-
 
 '''
-@Desc: This is the implementation of PAL-A
+@Desc    :   This is the implementation of the vanilla user ideal point model
 '''
 
 import numpy as np
@@ -37,6 +37,7 @@ class BasePrefLearner(nn.Module):
         is_temperature_learnable: bool,
         is_gumbel_hard: Optional[bool]=None,
         seed: int=42,
+        **kwargs
     ):
         super().__init__()
         self.pref_learner_type = pref_learner_type
@@ -93,6 +94,13 @@ class BasePrefLearner(nn.Module):
             self.trainable_params["logit_scale"] = self.logit_scale
         if self.is_temperature_learnable and "temperature" not in fix_modules:
             self.trainable_params["temperature"] = self.softmax_w.temperature
+
+        n = 0
+        for k, v in self.trainable_params.items():
+            for i in v:
+                # count how many trainable parameters
+                n += torch.prod(torch.tensor(i.shape))
+        print(n)
     
 class PrefLearner_dist(BasePrefLearner):    # |f(x)-f(u)|_2
     

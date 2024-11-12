@@ -42,10 +42,9 @@ class LearnerWrapLightning(L.LightningModule):
         self.epochs_new_pair = epochs_new_pair
         self.epochs_new_user = epochs_new_user
 
-    def init_loss(self, loss_cumulative, upper_bound, lmd, loss_type):
-        self.loss_cumulative = loss_cumulative
-        if self.loss_cumulative and loss_type in ['hinge', 'logistic']:
-            loss_type += "_elementwise"
+    def init_loss(self, loss_weighting, upper_bound, lmd, loss_type):
+        self.loss_weighting = loss_weighting
+        loss_type += "_elementwise"
         self.loss_fn = LossFunction(loss_type)
         self.bound_loss_fn = ProtoBoundLossFunction(upper_bound, lmd)
         
@@ -61,17 +60,17 @@ class LearnerWrapLightning(L.LightningModule):
         # 'left_attention_mask': chosen_attention_mask,\
         # 'right_attention_mask': rejected_attention_mask
         # })
-        batch = preprocess_tokenized_ds(batch, self.device)
+        # batch = preprocess_tokenized_ds(batch, self.device)
         sample, y = batch
         x, inds = sample['input'], sample['inds']
         if self.prefLearner_pms.pref_learner_type in ['dist','dist_normalization','norm','angle_hinge']:
             y_hat = self.prefLearner(x)
-            record = calc_hinge_loss(y_hat, y, self.loss_fn, inds, cumulative=self.loss_weighting)
+            record = calc_hinge_loss(y_hat, y, self.loss_fn, inds, weightingMethod=self.loss_weighting)
         elif self.prefLearner_pms.pref_learner_type in ['angle','dist_logistic']:
             y = torch.tensor(y).long()
             y = ((y+1)/2).to(torch.long)
             y_hat = self.prefLearner(x)
-            record = calc_logisitic_loss(y_hat, y, self.loss_fn, inds, cumulative=self.loss_weighting)
+            record = calc_logisitic_loss(y_hat, y, self.loss_fn, inds, weightingMethod=self.loss_weighting)
         loss, accu_mean_token, accu_last_token = record['loss'], record['accu_all_tokens'], record['accu_last_token']
         bound_items = self.prefLearner.user_learner.return_user_ideal_points()
         bound_loss =  self.bound_loss_fn(bound_items)
@@ -82,6 +81,7 @@ class LearnerWrapLightning(L.LightningModule):
         optimizer = self.optimizers()
         optimizer.zero_grad()
         loss, bound_loss, accu_mean_token, accu_last_token = self._wrap_forward(batch, batch_idx)
+        loss += bound_loss
         self.manual_backward(loss)
         optimizer.step()
         if self.learner_mode == "new_pair":
