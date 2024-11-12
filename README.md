@@ -62,6 +62,15 @@ This repository contains the code for ***<u>PAL</u>*** (Personalized Alignment L
 
  # Usage 🧰
 
+
+ ```mermaid
+graph LR
+    A[Prepare the Preference Dataset with User IDs] --> B[Design the Configurations]
+    B --> C[Train the Model]
+    C --> D[Reformat the PAL Model into a Standard Reward Model]
+    D --> E[Ready for Further Applications]
+```
+
 ## Data Preparation
 
 Compared with typical preference datasets, each sample should also contain the `user_id` to learn each user's preference. The format of each sample should be `(user_id, prompt, (response_1), (response_2)),y`, where `user_id` is a unique identifier (string) for a specific user,  `prompt`, `response_1`, `response_2` are texts or other modalities,  $y\in \{-1, 1\}$ represents the user's preference. (Notice:  modify `dataset_factory.py` is required for your customized datasets).
