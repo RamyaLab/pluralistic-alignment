@@ -123,9 +123,9 @@ This script trains the PAL-B-Large model by finetuning the foundation model, pro
 ```sh
 # Train PAL-B-Large (Large: finetune the foundation + projectors + user weights)
 CUDA_VISIBLE_DEVICES=0 python -u main_pal_b.py \
-	--prefLearner_config ./config/prefLearner_config/b-dim512-k2-opt350m-mlp2.yaml \
-	--run_name summary-pal-b-large-k2-mlp2 \
-	2>&1 >| ./logs/summary-pal-b-large-k2-mlp.log 
+  --prefLearner_config ./config/prefLearner_config/b-dim512-k2-opt350m-mlp2.yaml \
+  --run_name summary-pal-b-large-k2-mlp2 \
+  2>&1 >| ./logs/summary-pal-b-large-k2-mlp.log 
 ```
 
 ### 2. PAL-B-Tiny (Tiny Setup)
@@ -135,9 +135,9 @@ This script trains the PAL-B-Tiny model by fixing the foundation model and only 
 ```sh
 # Train PAL-B-Tiny (Tiny: fix the foundation model and only learn the projectors + user weights)
 CUDA_VISIBLE_DEVICES=1 python -u main_pal_b_fix_llm.py \
-	--prefLearner_config ./config/prefLearner_config/b-dim512-k2-opt350m-mlp2.yaml \
-	--run_name summary-pal-b-tiny-k2-mlp2 \
-	2>&1 >| ./logs/summary-pal-b-tiny-k2-mlp2.log 
+  --prefLearner_config ./config/prefLearner_config/b-dim512-k2-opt350m-mlp2.yaml \
+  --run_name summary-pal-b-tiny-k2-mlp2 \
+  2>&1 >| ./logs/summary-pal-b-tiny-k2-mlp2.log 
 ```
 
 ### 3. PAL-B New User Generalization
