@@ -16,7 +16,8 @@ Sample-Efficient Personalized Reward Modeling for Pluralistic Alignment
 
 This repository contains the code for ***<u>PAL</u>*** (Personalized Alignment Learning), a novel framework for **pluralistic alignment** in foundation models. PAL enables efficient reward modeling that caters to <u>***diverse human preferences***</u>, allowing for **personalized adaptation** in both text and image generation tasks. The model balances *<u>**commonalities across users**</u>* with individual-specific customizations, achieving *<u>**few-shot localization**</u>* for new users and reducing the *<u>**sample requirements per user**</u>*.
 
-![image-20241112160410695](/Users/daiwei/Library/Application Support/typora-user-images/image-20241112160410695.png)
+<img width="678" alt="image" src="https://github.com/user-attachments/assets/bd7006a2-1b57-4263-a104-83c8b0bc5a59">
+
 
 # 💬 Contents
 
@@ -177,8 +178,6 @@ To load the standard reward model version of the PAL model, use the following fu
 
 
 # Acknowledgement
-
-- The structure of the README.md mimics the README.md of the repo of LLAVA
 
 
 
