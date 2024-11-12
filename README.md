@@ -89,27 +89,17 @@ The `config` folder in this repository contains various configuration subfolders
 ```
 config
 ├── ds_config
-│   ├── summary_unseen_5samples.yaml
-│   └── summary.yaml
+│   ├── summary.yaml
+│   └── ...
 ├── loss_config
-│   ├── a-cumulative.yaml
-│   ├── a-mean.yaml
-│   ├── a-onlylast.yaml
 │   ├── b-cumulative.yaml
-│   ├── b-mean.yaml
-│   └── b-onlylast.yaml
+│   └── ...
 ├── optim_config
-│   ├── vanilla-e10.yaml
-│   ├── vanilla-e1.yaml
 │   ├── vanilla-e20.yaml
+│   └── ...
 └── prefLearner_config
-    ├── a-dim512-k2-opt350m-mlp2.yaml
-    ├── b-dim1024-k2-bgem3-mlp2.yaml
-    ├── b-dim1536-k2-qwen1-5b-mlp2.yaml
-    ├── b-dim1536-k2-stella1-5b-mlp2.yaml
-    ├── b-dim512-k1-opt350m-mlp2.yaml
     ├── b-dim512-k2-opt350m-mlp2.yaml
-    └── b-dim768-k2-distillbert65m-mlp2.yaml
+    └── ...
 ```
 
 ## Training
