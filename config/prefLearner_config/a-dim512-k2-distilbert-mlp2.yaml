@@ -1,7 +1,7 @@
-d_hid: 512
-d_pref: 512
-k: 1
-llm_name: 'facebook/opt-350m'
+d_hid: 768
+d_pref: 768
+k: 2
+llm_name: 'distilbert/distilbert-base-cased'
 user_learner_type: 'f(Pw)'
 pref_learner_type: 'dist'
 proj_arch: 'mlp2-relu-dropout0-residual'
