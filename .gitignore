@@ -1,6 +1,7 @@
 
 *.log
 *.wandb
+**/.DS_Store
 
 /llm-data
 /wandb
