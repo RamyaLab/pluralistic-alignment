@@ -65,9 +65,9 @@ This repository contains the code for ***<u>PAL</u>*** (Personalized Alignment L
 
  ```mermaid
 graph LR
-    A[Prepare the Preference Dataset with User IDs] --> B[Design the Configurations]
-    B --> C[Train the Model]
-    C --> D[Reformat the PAL Model into a Standard Reward Model]
+    A[Prepare the Preference Dataset with user IDs] --> B[Design Configurations]
+    B --> C[Train the PAL Model]
+    C --> D[Convert PAL Model into Standard Reward Model]
     D --> E[Ready for Further Applications]
 ```
 
