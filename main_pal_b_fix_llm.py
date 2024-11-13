@@ -54,7 +54,7 @@ if __name__ == '__main__':
     trainer = L.Trainer(max_epochs=optim_config.epochs_new_pair, devices=[args.device], logger=wandb_logger, callbacks=[checkpoint_callback])
     if trainer.global_rank == 0:
         wandb_logger.experiment.config.update(config_dict)
-        
+    
     # Train
     logger.critical(" 💠 start training...")
     trainer.validate(learner, datamodule=dm)

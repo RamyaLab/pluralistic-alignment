@@ -19,7 +19,7 @@ logger = logging.getLogger(__name__)
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument('--ds_config', type=str, default='./config/ds_config/summary.yaml')
-    parser.add_argument('--prefLearner_config', type=str, default='./config/prefLearner_config/b-dim512-k2-opt350m-mlp2.yaml')
+    parser.add_argument('--prefLearner_config', type=str, default='./config/prefLearner_config/b-dim768-k2-distillbert65m-mlp2.yaml')
     parser.add_argument('--optim_config', type=str, default='./config/optim_config/vanilla-e1.yaml')
     parser.add_argument('--loss_config', type=str, default='./config/loss_config/b-cumulative.yaml')
     parser.add_argument('--run_name', type=str, default='summary-b-cumulative-k2-mlp2')

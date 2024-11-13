@@ -3,9 +3,9 @@
 *.wandb
 **/.DS_Store
 
-/llm-data
 /wandb
 /wandb-llm-rm-log
 /logs
 /ckpts
 /logs_wandb
+/data

@@ -1,7 +1,7 @@
 
 dataset_name: 'openai/summarize_from_feedback_unseen'
-ds_output_path: '/home/daiwei/research/diverse-alignment/refactored-diverse-alignment/llm-data'
-user_ids_path: '/home/daiwei/research/diverse-alignment/refactored-diverse-alignment/llm-data/summary_unseen_uids.json'
+ds_output_path: './data'
+user_ids_path: './data/cache/summary_uids.json'
 end_of_conversation_token: '<|endoftext|>'
 max_seq_len: 512
 num_samples_per_unseen_train: 5
