@@ -32,13 +32,13 @@ This repository contains the code for ***<u>PAL</u>*** (Personalized Alignment L
 
 # 🎯 Key Features
 
-💠 <u>***Diverse Preference Alignment***</u>: PAL can handle diverse human preferences rather than assuming a single, universal preference, addressing the variability in individual values.
+💠 <span style="color:lightblue; font-weight:bold;">Diverse Preference Alignment</span>: PAL can handle diverse human preferences rather than assuming a single, universal preference, addressing the variability in individual values.
 
-💠 <u>***Higher Performance with Fewer Parameters***</u>: e.g. For a T2T task, PAL is 1.7% more accurate for seen users and 36% more accurate for unseen users, with 20× fewer parameters.
+💠 <span style="color:lightblue; font-weight:bold;">Higher Performance with Fewer Parameters</span>: e.g. For a T2T task, PAL is 1.7% more accurate for seen users and 36% more accurate for unseen users, with 20× fewer parameters.
 
-💠 <u>***Modular Design***</u>: PAL's architecture is modular, allowing it to leverage shared common preferences while adapting to specific individual preferences.
+💠  <span style="color:lightblue; font-weight:bold;">Modular Design</span>: PAL's architecture is modular, allowing it to leverage shared common preferences while adapting to specific individual preferences.
 
-💠 <u>***Few-shot Generalization***</u>: PAL enables quick adaptation to new users' preferences with few examples, making it more efficient for personalized alignment.
+💠 <span style="color:lightblue; font-weight:bold;">Few-shot Generalization</span>: PAL enables quick adaptation to new users' preferences with few examples, making it more efficient for personalized alignment.
 
 # 💻 Installation
 
