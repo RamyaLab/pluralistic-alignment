@@ -9,3 +9,4 @@
 /ckpts
 /logs_wandb
 /data
+/__pycache__
