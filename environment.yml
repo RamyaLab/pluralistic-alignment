@@ -1,0 +1,25 @@
+name: pal
+channels:
+  - https://repo.anaconda.com/pkgs/main
+  - https://repo.anaconda.com/pkgs/r
+dependencies:
+  - cvxpy=1.4.2
+  - gurobi=11.0.1
+  - ipython=8.22.2
+  - lightning-flash=0.6.0
+  - numpy=1.26.4
+  - pandas=2.2.1
+  - python=3.12
+  - pytorch-cuda=12.1
+  - pytorch-lightning=2.2.1
+  - pytorch=2.2.1
+  - torchaudio=2.2.1
+  - torchvision=0.17.1
+  - tqdm=4.66.2
+  - omegaconf
+  - lightning
+  - conda-forge::transformers
+  - scikit-learn
+  - conda-forge::wandb
+  - datasets
+prefix: /home/daiwei/.local/miniconda3/envs/pal
