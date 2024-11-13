@@ -1,6 +1,6 @@
 # PAL: <span style="font-size: 1.5em; color: #1E90FF;">P</span>luralistic <span style="font-size: 1.5em; color: #1E90FF;">AL</span>ignment Framework
 
-Sample-Efficient Personalized Reward Modeling for Pluralistic Alignment
+Sample-Efficient Personalized Reward Modeling for Pluralistic Alignment [![Code License](https://img.shields.io/badge/Code%20License-Apache_2.0-green.svg)](https://github.com/tatsu-lab/stanford_alpaca/blob/main/LICENSE)
 
 [Daiwei Chen](), [Yi Chen](https://www.deepneural.network/), [Aniket Rege](https://aniketrege.github.io/), [Zhi Wang](https://zwang.org/), [Ramya Korlakai Vinayak](https://ramyakv.github.io/)
 
@@ -8,29 +8,27 @@ Sample-Efficient Personalized Reward Modeling for Pluralistic Alignment
 
 # 📰 News
 
+- **PAL** is currently under review for **2024 ICLR** conference.
 - 🔥 [NEW!] **PAL** has been accepted at **2024 NIPS** workshops: [AFM](https://adaptive-foundation-models.org/), [Behavioral ML](https://sites.google.com/view/behavioralml/), [FITML](https://sites.google.com/view/neurips2024-ftw/home), [Pluralistic-Alignment](https://pluralistic-alignment.github.io/), [SoLaR](https://solar-neurips.github.io/).
-- **PAL** is under review for **2024 ICLR** conference
 - **PAL** has been accepted at **2024 ICML** workshops: [TF2M](https://sites.google.com/view/tf2m) and [MFHAIA](https://sites.google.com/view/mhf-icml2024).
 
 # 📍 Overview
 
 This repository contains the code for ***<u>PAL</u>*** (Personalized Alignment Learning), a novel framework for **pluralistic alignment** in foundation models. PAL enables efficient reward modeling that caters to <u>***diverse human preferences***</u>, allowing for **personalized adaptation** in both text and image generation tasks. The model balances *<u>**commonalities across users**</u>* with individual-specific customizations, achieving *<u>**few-shot localization**</u>* for new users and reducing the *<u>**sample requirements per user**</u>*.
 
-<img width="678" alt="image" src="https://github.com/user-attachments/assets/bd7006a2-1b57-4263-a104-83c8b0bc5a59">
-
+![image-20241112160410695](/Users/daiwei/Library/Application Support/typora-user-images/image-20241112160410695.png)
 
 # 💬 Contents
 
 - [Overview](#overview📍)
-- [Key Features](#Key-Features)
-- [Installation](#Installation)
-- [Usage](#usage)
+- [Key Features](#🎯-Key-Features)
+- [Installation](#💻-installation)
+- [Usage](#🧰-usage)
   - [Data Preparation](##data-preparation)
   - [Configurations](##configurations)
   - [Training](##training)
   - [Integration](##integration)
-- [Demo](#demo)
-- [Contributing](#contributing)
+- [Citation](#📑-citation)
 
 # 🎯 Key Features
 
@@ -159,27 +157,21 @@ To load the standard reward model version of the PAL model, use the following fu
 - `load_pal_rm_a()`
 - `load_pal_rm_b()`
 
-# Contributing
+# 📑 Citation
 
+If you find **<u>*PAL*</u>** useful for your research and applications, please cite using this BibTeX:
 
-
-
-
-
-
-# Citations
-
-
-
-
-
-
-
-
-
-# Acknowledgement
-
-
+```
+@misc{chen2024palpluralisticalignmentframework,
+      title={PAL: Pluralistic Alignment Framework for Learning from Heterogeneous Preferences}, 
+      author={Daiwei Chen and Yi Chen and Aniket Rege and Ramya Korlakai Vinayak},
+      year={2024},
+      eprint={2406.08469},
+      archivePrefix={arXiv},
+      primaryClass={cs.LG},
+      url={https://arxiv.org/abs/2406.08469}, 
+}
+```
 
 
 
