@@ -1,7 +1,6 @@
 # from flash.core.optimizers import LinearWarmupCosineAnnealingLR
 import lightning as L
 import torch.optim as optim
-from deepspeed.ops.adam import DeepSpeedCPUAdam
 import torch
 from ..loss_function import LossFunction, ProtoBoundLossFunction
 from .learner import prefLearner_factory
@@ -138,11 +137,9 @@ class LearnerWrapLightning(L.LightningModule):
                 else:
                     logger.critical(f"🚫 trainable_key: {trainable_key} not in the prefLearner.trainable_params")
             optimizer = optim.Adam(parameter_groups)
-            # optimizer = DeepSpeedCPUAdam(parameter_groups)
         elif self.learner_mode == 'new_user':
             logger.info('new_user learner mode')
             params = self.prefLearner.trainable_params["W"]
             hyperparams = self.optim_pms["W"]
             optimizer = optim.AdamW(params, **hyperparams)
-            # optimizer = DeepSpeedCPUAdam(params, **hyperparams)
         return {'optimizer': optimizer}

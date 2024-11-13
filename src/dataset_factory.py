@@ -41,6 +41,7 @@ def dataset_factory(dataset_name: str, ds_output_path, model_type: Literal['b', 
     
     if dataset_name == 'openai/summarize_from_feedback':
         from .summary_dataset_utils import preprocess_ds
+        logger.critical(kwargs)
         train_ds, test_ds = preprocess_ds(**kwargs)
         tokenized_train_ds = create_tokenized_ds(train_ds, tokenizer, end_of_conversation_token, max_seq_len)
         tokenized_test_ds = create_tokenized_ds(test_ds, tokenizer, end_of_conversation_token, max_seq_len)
