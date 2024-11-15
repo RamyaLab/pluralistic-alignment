@@ -40,7 +40,7 @@ if __name__ == '__main__':
     
     # Load DataModule
     logger.critical(f" 💠 Loading datamodule...")
-    tokenizer = AutoTokenizer.from_pretrained('facebook/opt-350m',fast_tokenizer=True)
+    tokenizer = AutoTokenizer.from_pretrained(prefLearner_config.llm_name,fast_tokenizer=True)
     train_ds, val_ds, test_ds = dataset_factory(**ds_config, model_type='b', tokenizer=tokenizer)
     uids = torch.load(ds_config.user_ids_path)
     dm = TokenizedRewardDataModule(train_ds, val_ds, test_ds, batch_size=prefLearner_config.bs, num_workers=4, persistent_workers=False)

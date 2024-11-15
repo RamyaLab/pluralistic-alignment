@@ -27,11 +27,11 @@ def load_ckpt_learner(learner, ckpt_path):
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
-    parser.add_argument('--ds_config', type=str, default='./config/ds_config/summary_unseen.yaml')
-    parser.add_argument('--prefLearner_config', type=str, default='./config/prefLearner_config/b-dim512-k2-opt350m-mlp2.yaml')
-    parser.add_argument('--optim_config', type=str, default='./config/optim_config/vanilla.yaml')
+    parser.add_argument('--ds_config', type=str, default='./config/ds_config/summary_unseen_10samples.yaml')
+    parser.add_argument('--prefLearner_config', type=str, default='./config/prefLearner_config/b-dim768-k2-distillbert65m-mlp2.yaml')
+    parser.add_argument('--optim_config', type=str, default='./config/optim_config/vanilla-e1.yaml')
     parser.add_argument('--loss_config', type=str, default='./config/loss_config/b-cumulative.yaml')
-    parser.add_argument('--state_dict_path', type=str, default='/home/daiwei/research/diverse-alignment/refactored-diverse-alignment/ckpts/summary-b-cumulative-k2-mlp2-seen-epoch=00-8b09.ckpt')
+    parser.add_argument('--state_dict_path', type=str, default='/home/daiwei/projects/pal/pluralistic-alignment/ckpts/summary-b-cumulative-k2-mlp2-seen-epoch=00-cb1c.ckpt')
     parser.add_argument('--run_name', type=str, default='summary-unseen-b-cumulative-k2-mlp2')
     parser.add_argument('--device', type=int, default=0)
     args = parser.parse_args()
@@ -50,7 +50,7 @@ if __name__ == '__main__':
     
     # Load DataModule
     logger.critical(f" 💠 Loading datamodule...")
-    tokenizer = AutoTokenizer.from_pretrained('facebook/opt-350m',fast_tokenizer=True)
+    tokenizer = AutoTokenizer.from_pretrained(prefLearner_config.llm_name,fast_tokenizer=True)
     train_ds, val_ds, test_ds = dataset_factory(**ds_config, model_type='b', tokenizer=tokenizer)
     uids = torch.load(ds_config.user_ids_path)
     dm = TokenizedRewardDataModule(train_ds, val_ds, test_ds, batch_size=prefLearner_config.bs, num_workers=4, persistent_workers=False)
