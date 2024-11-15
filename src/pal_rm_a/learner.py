@@ -94,13 +94,6 @@ class BasePrefLearner(nn.Module):
             self.trainable_params["logit_scale"] = self.logit_scale
         if self.is_temperature_learnable and "temperature" not in fix_modules:
             self.trainable_params["temperature"] = self.softmax_w.temperature
-
-        n = 0
-        for k, v in self.trainable_params.items():
-            for i in v:
-                # count how many trainable parameters
-                n += torch.prod(torch.tensor(i.shape))
-        print(n)
     
 class PrefLearner_dist(BasePrefLearner):    # |f(x)-f(u)|_2
     

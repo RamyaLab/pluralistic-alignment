@@ -81,7 +81,7 @@ class LearnerWrapLightning(L.LightningModule):
         optimizer = self.optimizers()
         optimizer.zero_grad()
         loss, bound_loss, accu_mean_token, accu_last_token = self._wrap_forward(batch, batch_idx)
-        loss += bound_loss
+        # loss += bound_loss; reduce performance
         self.manual_backward(loss)
         optimizer.step()
         if self.learner_mode == "new_pair":
@@ -136,6 +136,6 @@ class LearnerWrapLightning(L.LightningModule):
         elif self.learner_mode == 'new_user':
             logger.info('new_user learner mode')
             params = self.prefLearner.trainable_params["W"]
-            hyperparams = self.optimizer_hyperparams["W"]
-            optimizer = optim.AdamW(params, **hyperparams)
+            hyperparams = self.optim_pms["W"]
+            optimizer = optim.AdamW(list(params), **hyperparams)
         return {'optimizer': optimizer}

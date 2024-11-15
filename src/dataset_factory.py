@@ -14,17 +14,19 @@ def dataset_factory(dataset_name: str, ds_output_path, model_type: Literal['b', 
         from .rm_dataset_utils import create_tokenized_ds_b as create_tokenized_ds
     
     ds_output_path = os.path.join(ds_output_path, dataset_name)
+    tokenizer_path = tokenizer.name_or_path.split('/')[-1]
     if 'num_samples_per_unseen_train' not in kwargs:
-        train_ds_path = os.path.join(ds_output_path, f'{tokenizer.name_or_path.split('/')[-1]}_train_ds.pt')
-        val_ds_path = os.path.join(ds_output_path, f'{tokenizer.name_or_path.split('/')[-1]}_val_ds.pt')
-        test_ds_path = os.path.join(ds_output_path, f'{tokenizer.name_or_path.split('/')[-1]}_test_ds.pt')
+        train_ds_path = os.path.join(ds_output_path, f'{tokenizer_path}_train_ds.pt')
+        val_ds_path = os.path.join(ds_output_path, f'{tokenizer_path}_val_ds.pt')
+        test_ds_path = os.path.join(ds_output_path, f'{tokenizer_path}_test_ds.pt')
         # logger.critical(f" 💠 {train_ds_path}")
         # logger.critical(f" 💠 {val_ds_path}")
         # logger.critical(f" 💠 {test_ds_path}")
     else:
-        train_ds_path = os.path.join(ds_output_path, f'{tokenizer.name_or_path.split('/')[-1]}_{kwargs['num_samples_per_unseen_train']}_train_ds.pt')
-        val_ds_path = os.path.join(ds_output_path, f'{tokenizer.name_or_path.split('/')[-1]}_{kwargs['num_samples_per_unseen_train']}_val_ds.pt')
-        test_ds_path = os.path.join(ds_output_path, f'{tokenizer.name_or_path.split('/')[-1]}_{kwargs['num_samples_per_unseen_train']}_test_ds.pt')
+        num_samples_per_unseen_train = kwargs['num_samples_per_unseen_train']
+        train_ds_path = os.path.join(ds_output_path, f'{tokenizer_path}_{num_samples_per_unseen_train}_train_ds.pt')
+        val_ds_path = os.path.join(ds_output_path, f'{tokenizer_path}_{num_samples_per_unseen_train}_val_ds.pt')
+        test_ds_path = os.path.join(ds_output_path, f'{tokenizer_path}_{num_samples_per_unseen_train}_test_ds.pt')
         # logger.critical(f" 💠 {train_ds_path}")
         # logger.critical(f" 💠 {val_ds_path}")
         # logger.critical(f" 💠 {test_ds_path}")

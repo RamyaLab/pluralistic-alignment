@@ -69,9 +69,11 @@ def get_tokenized_ds_rm_pal_b(
     seed: int,
     tokenizer: AutoTokenizer,
 ):
-    train_ds_token_ids_path = f'train_ds_rm_pal_b_{ds_name.replace('/', '-')}_seed{seed}_{data_split}_{split_index}.pt'
-    val_ds_token_ids_path = f'val_ds_rm_pal_b_{ds_name.replace('/', '-')}_seed{seed}_{data_split}_{split_index}.pt'
-    test_ds_token_ids_path = f'test_ds_rm_pal_b_{ds_name.replace('/', '-')}_seed{seed}_{data_split}_{split_index}.pt'
+    ds_name_replaced = ds_name.replace('/', '-')
+    print(ds_name_replaced)
+    train_ds_token_ids_path = f'train_ds_rm_pal_b_{ds_name_replaced}_seed{seed}_{data_split}_{split_index}.pt'
+    val_ds_token_ids_path = f'val_ds_rm_pal_b_{ds_name_replaced}_seed{seed}_{data_split}_{split_index}.pt'
+    test_ds_token_ids_path = f'test_ds_rm_pal_b_{ds_name_replaced}_seed{seed}_{data_split}_{split_index}.pt'
 
     if not os.path.exists(os.path.join(ds_output_path, train_ds_token_ids_path)) \
         or not os.path.exists(os.path.join(ds_output_path, val_ds_token_ids_path)) \
@@ -141,9 +143,10 @@ def get_tokenized_ds(
     tokenizer: AutoTokenizer,
     **kwargs,
 ):
-    train_ds_token_ids_path = f'train_ds_{ds_name.replace('/', '-')}_seed{seed}_{data_split}_{split_index}.pt'
-    val_ds_token_ids_path = f'val_ds_{ds_name.replace('/', '-')}_seed{seed}_{data_split}_{split_index}.pt'
-    test_ds_token_ids_path = f'test_ds_{ds_name.replace('/', '-')}_seed{seed}_{data_split}_{split_index}.pt'
+    ds_name_replaced = ds_name.replace('/', '-')
+    train_ds_token_ids_path = f'train_ds_{ds_name_replaced}_seed{seed}_{data_split}_{split_index}.pt'
+    val_ds_token_ids_path = f'val_ds_{ds_name_replaced}_seed{seed}_{data_split}_{split_index}.pt'
+    test_ds_token_ids_path = f'test_ds_{ds_name_replaced}_seed{seed}_{data_split}_{split_index}.pt'
 
     if not os.path.exists(os.path.join(ds_output_path, train_ds_token_ids_path)) \
         or not os.path.exists(os.path.join(ds_output_path, val_ds_token_ids_path)) \
