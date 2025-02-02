@@ -2,15 +2,15 @@
 
 [![Code License](https://img.shields.io/badge/Code%20License-Apache_2.0-green.svg)](https://github.com/tatsu-lab/stanford_alpaca/blob/main/LICENSE)
 
-Sample-Efficient Personalized Reward Modeling for Pluralistic Alignment 
+PAL: Sample-Efficient Personalized Reward Modeling for Pluralistic Alignment
 
-[Daiwei Chen](), [Yi Chen](https://www.deepneural.network/), [Aniket Rege](https://aniketrege.github.io/), [Zhi Wang](https://zwang.org/), [Ramya Korlakai Vinayak](https://ramyakv.github.io/)
+[Daiwei Chen](https://chendaiwei-99.github.io), [Yi Chen](https://www.deepneural.network/), [Aniket Rege](https://aniketrege.github.io/), [Zhi Wang](https://zwang.org/), [Ramya Korlakai Vinayak](https://ramyakv.github.io/)
 
 [ 🌐 [PAL Project Page](https://pal-alignment.github.io/) ] [ 📜 [arXiv](https://arxiv.org/abs/2406.08469) ] [ 🤗 [HuggingFace (TODO)]() ] [ 📊 [Demo Datasets (TODO)]() ]
 
 # 📰 News
 
-- **PAL** is currently under review for **2024 ICLR** conference.
+- **PAL** has been accepted by **2025 ICLR** conference.
 - 🔥 [NEW!] **PAL** has been accepted at **2024 NeurIPS** workshops: [AFM](https://adaptive-foundation-models.org/), [Behavioral ML](https://sites.google.com/view/behavioralml/), [FITML](https://sites.google.com/view/neurips2024-ftw/home), [Pluralistic-Alignment](https://pluralistic-alignment.github.io/), [SoLaR](https://solar-neurips.github.io/).
 - **PAL** has been accepted at **2024 ICML** workshops: [TF2M](https://sites.google.com/view/tf2m) and [MFHAIA](https://sites.google.com/view/mhf-icml2024).
 
@@ -18,7 +18,7 @@ Sample-Efficient Personalized Reward Modeling for Pluralistic Alignment
 
 This repository contains the code for ***<u>PAL</u>*** (Personalized Alignment Learning), a novel framework for **pluralistic alignment** in foundation models. PAL enables efficient reward modeling that caters to <u>***diverse human preferences***</u>, allowing for **personalized adaptation** in both text and image generation tasks. The model balances *<u>**commonalities across users**</u>* with individual-specific customizations, achieving *<u>**few-shot localization**</u>* for new users and reducing the *<u>**sample requirements per user**</u>*.
 
-![image-20241112160410695](/Users/daiwei/Library/Application Support/typora-user-images/image-20241112160410695.png)
+![Ideal Point Model Explained](image.png)
 
 # 💬 Contents
 
@@ -36,7 +36,7 @@ This repository contains the code for ***<u>PAL</u>*** (Personalized Alignment L
 
 💠 <span style="color:lightblue; font-weight:bold;">Diverse Preference Alignment</span>: PAL can handle diverse human preferences rather than assuming a single, universal preference, addressing the variability in individual values.
 
-💠 <span style="color:lightblue; font-weight:bold;">Higher Performance with Fewer Parameters</span>: e.g. For a T2T task, PAL is 1.7% more accurate for seen users and 36% more accurate for unseen users, with 20× fewer parameters.
+💠 <span style="color:lightblue; font-weight:bold;">Accuracy-Compute Optimality</span>: e.g. For a T2T task, PAL is 1.7% more accurate for seen users and 36% more accurate for unseen users, with 20× fewer parameters.
 
 💠  <span style="color:lightblue; font-weight:bold;">Modular Design</span>: PAL's architecture is modular, allowing it to leverage shared common preferences while adapting to specific individual preferences.
 
@@ -44,7 +44,7 @@ This repository contains the code for ***<u>PAL</u>*** (Personalized Alignment L
 
 # 💻 Installation
 
-> All code has been tested on Linux; functionality on other systems is not guaranteed.
+> All code has been tested on Linux with `CUDA=12.4`; functionality on other systems  is not guaranteed.
 
 1. Clone this repository and navigate into the PAL
 
@@ -56,10 +56,10 @@ This repository contains the code for ***<u>PAL</u>*** (Personalized Alignment L
 2. Install Packages
 
    ``` sh
-   pip install -r requirements.txt
+   conda env create --file environment.yml
    ```
 
-> Notice: Ensure your environment supports **PyTorch** and **CUDA** (if you are using GPU acceleration). The requirements.txt contains detailed package versions and setup instructions.
+> Notice: Ensure your environment supports **PyTorch** and **CUDA** (if you are using GPU acceleration). The `environment.yml` contains detailed package versions and setup instructions.
 
  # 🧰 Usage
 
@@ -103,7 +103,7 @@ config
     └── ...
 ```
 
-## Training
+## Training Demos
 
 The following scripts outline different training demos for PAL-B models, targeting various levels of model adaptation and user generalization.
 
@@ -146,6 +146,46 @@ CUDA_VISIBLE_DEVICES=2 python -u main_pal_b_unseen.py \
   --run_name summary-unseen-pal-b-cumulative-k2-mlp2-e20-{num_of_samples_per_unseen_user}sample \
   2>&1 >| ./logs/summary-unseen-pal-b-k2-mlp2-{num_of_samples_per_unseen_user}sample.log
 ```
+
+
+## Experiment Reproduction
+
+### 1: On the Reddit TL;DR Summary dataset, increasing # groups in our PAL model leads to a significant boost in preference prediction performance.
+```sh
+  # set # user preference groups to 1
+  for i in {1..5}; do
+      CUDA_VISIBLE_DEVICES=0 python -u main_pal_b.py \
+          --prefLearner_config ./config/prefLearner_config/b-dim512-k1-opt350m-mlp2.yaml \
+          --run_name summary-b-cumulative-k1-mlp2-run$i \
+          --device 0 \
+          2>&1 >| ./logs/summary-b-cumulative-k1-mlp2-$i.log
+  done
+
+  # set # user preference groups to 2
+  for i in {1..5}; do
+      CUDA_VISIBLE_DEVICES=1 python -u main_pal_b.py \
+          --prefLearner_config ./config/prefLearner_config/b-dim512-k2-opt350m-mlp2.yaml \
+          --run_name summary-b-cumulative-k2-mlp2-run$i \
+          --device 0 \
+          2>&1 >| ./logs/summary-b-cumulative-k2-mlp2-$i.log
+  done
+```
+### 2. Given the well-trained PAL model above, we can generalize to new, unseen users with very few # preference pairs.
+```sh
+for j in 2 5 10 20 50 100; do
+  for i in {1..5}; do
+      CUDA_VISIBLE_DEVICES=1 python -u main_pal_b_unseen.py \
+          --ds_config ./config/ds_config/summary_unseen_${j}samples.yaml \
+          --prefLearner_config ./config/prefLearner_config/b-dim512-k2-opt350m-mlp2.yaml \
+          --optim_config ./config/optim_config/vanilla-e20.yaml \
+          --loss_config ./config/loss_config/b-cumulative.yaml \
+          --state_dict_path /path/to/the/model(k=2)/trained/in/stage/1.ckpt \
+          --run_name summary-unseen-b-cumulative-k2-mlp2-e20-sample${j}-run${i}
+  done
+done
+```
+
+
 
 ## Integration
 

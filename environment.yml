@@ -1,7 +1,9 @@
-name: pal
+name: pal-env
 channels:
-  - https://repo.anaconda.com/pkgs/main
-  - https://repo.anaconda.com/pkgs/r
+  - gurobi
+  - pytorch
+  - conda-forge
+  - defaults
 dependencies:
   - cvxpy=1.4.2
   - gurobi=11.0.1
@@ -10,16 +12,16 @@ dependencies:
   - numpy=1.26.4
   - pandas=2.2.1
   - python=3.12
-  - pytorch-cuda=12.1
+  - pytorch-cuda=12.4
   - pytorch-lightning=2.2.1
   - pytorch=2.2.1
   - torchaudio=2.2.1
   - torchvision=0.17.1
   - tqdm=4.66.2
   - omegaconf
-  - lightning
-  - conda-forge::transformers
-  - scikit-learn
+  - lightning=2.4.0
+  - conda-forge::transformers=4.46.2
+  - scikit-learn=1.5.2
   - conda-forge::wandb
-  - datasets
-prefix: /home/daiwei/.local/miniconda3/envs/pal
+  - datasets=2.19.2
+prefix: /home/daiwei/.local/miniconda3/envs/pal-env

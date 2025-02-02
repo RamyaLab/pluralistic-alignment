@@ -51,7 +51,7 @@ if __name__ == '__main__':
     learner.prefLearner.user_learner.init_weight(uids)
     learner.prefLearner.update_trainable_params()
     learner.set_mode("new_pair")
-    trainer = L.Trainer(max_epochs=optim_config.epochs_new_pair, devices=[args.device], logger=wandb_logger, callbacks=[checkpoint_callback])
+    trainer = L.Trainer(max_epochs=optim_config.epochs_new_pair, devices=[args.device], logger=wandb_logger, callbacks=[checkpoint_callback], accelerator="gpu")
     if trainer.global_rank == 0:
         wandb_logger.experiment.config.update(config_dict)
     
