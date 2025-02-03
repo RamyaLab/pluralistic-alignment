@@ -10,8 +10,8 @@ PAL: Sample-Efficient Personalized Reward Modeling for Pluralistic Alignment
 
 # 📰 News
 
-- **PAL** has been accepted by **2025 ICLR** conference.
-- 🔥 [NEW!] **PAL** has been accepted at **2024 NeurIPS** workshops: [AFM](https://adaptive-foundation-models.org/), [Behavioral ML](https://sites.google.com/view/behavioralml/), [FITML](https://sites.google.com/view/neurips2024-ftw/home), [Pluralistic-Alignment](https://pluralistic-alignment.github.io/), [SoLaR](https://solar-neurips.github.io/).
+- 🔥 [NEW!] **PAL** has been accepted by **2025 ICLR** conference.
+- **PAL** has been accepted at **2024 NeurIPS** workshops: [AFM](https://adaptive-foundation-models.org/), [Behavioral ML](https://sites.google.com/view/behavioralml/), [FITML](https://sites.google.com/view/neurips2024-ftw/home), [Pluralistic-Alignment](https://pluralistic-alignment.github.io/), [SoLaR](https://solar-neurips.github.io/).
 - **PAL** has been accepted at **2024 ICML** workshops: [TF2M](https://sites.google.com/view/tf2m) and [MFHAIA](https://sites.google.com/view/mhf-icml2024).
 
 # 📍 Overview
@@ -100,6 +100,10 @@ config
 │   └── ...
 └── prefLearner_config
     ├── b-dim512-k2-opt350m-mlp2.yaml
+    ├── b-dim768-k2-distillbert65m-mlp2.yaml
+    ├── b-dim1024-k2-bgem3-mlp2.yaml
+    ├── b-dim1536-k2-qwen1-5b-mlp2.yaml
+    ├── b-dim1536-k2-stella1-5b-mlp2.yaml
     └── ...
 ```
 
