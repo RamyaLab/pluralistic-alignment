@@ -1,4 +1,4 @@
-name: pal-env
+name: pal-env-1-test
 channels:
   - gurobi
   - pytorch
@@ -13,7 +13,6 @@ dependencies:
   - pandas=2.2.1
   - python=3.12
   - pytorch-cuda=12.4
-  - pytorch-lightning=2.2.1
   - pytorch=2.2.1
   - torchaudio=2.2.1
   - torchvision=0.17.1
@@ -24,4 +23,4 @@ dependencies:
   - scikit-learn=1.5.2
   - conda-forge::wandb
   - datasets=2.19.2
-prefix: /home/daiwei/.local/miniconda3/envs/pal-env
+prefix: /home/daiwei/.local/miniconda3/envs/pal-env-pal-env-1-test

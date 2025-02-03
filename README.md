@@ -18,7 +18,7 @@ PAL: Sample-Efficient Personalized Reward Modeling for Pluralistic Alignment
 
 This repository contains the code for ***<u>PAL</u>*** (Personalized Alignment Learning), a novel framework for **pluralistic alignment** in foundation models. PAL enables efficient reward modeling that caters to <u>***diverse human preferences***</u>, allowing for **personalized adaptation** in both text and image generation tasks. The model balances *<u>**commonalities across users**</u>* with individual-specific customizations, achieving *<u>**few-shot localization**</u>* for new users and reducing the *<u>**sample requirements per user**</u>*.
 
-![Ideal Point Model Explained](image.png)
+![Ideal Point Model Explained](img.png)
 
 # 💬 Contents
 
@@ -156,18 +156,18 @@ CUDA_VISIBLE_DEVICES=2 python -u main_pal_b_unseen.py \
   for i in {1..5}; do
       CUDA_VISIBLE_DEVICES=0 python -u main_pal_b.py \
           --prefLearner_config ./config/prefLearner_config/b-dim512-k1-opt350m-mlp2.yaml \
-          --run_name summary-b-cumulative-k1-mlp2-run$i \
+          --run_name summary-b-cumulative-k1-mlp2-run${i} \
           --device 0 \
-          2>&1 >| ./logs/summary-b-cumulative-k1-mlp2-$i.log
+          2>&1 >| ./logs/summary-b-cumulative-k1-mlp2-${i}.log
   done
 
   # set # user preference groups to 2
   for i in {1..5}; do
       CUDA_VISIBLE_DEVICES=1 python -u main_pal_b.py \
           --prefLearner_config ./config/prefLearner_config/b-dim512-k2-opt350m-mlp2.yaml \
-          --run_name summary-b-cumulative-k2-mlp2-run$i \
+          --run_name summary-b-cumulative-k2-mlp2-run${i} \
           --device 0 \
-          2>&1 >| ./logs/summary-b-cumulative-k2-mlp2-$i.log
+          2>&1 >| ./logs/summary-b-cumulative-k2-mlp2-${i}.log
   done
 ```
 ### 2. Given the well-trained PAL model above, we can generalize to new, unseen users with very few # preference pairs.
@@ -189,7 +189,7 @@ done
 
 ## Integration
 
-The `integration` subfolder provides code for **converting the PAL model into a standard reward model**.
+The `integration` subfolder provides code for **converting the PAL model into a standard reward model** (for further usage on RLHF).
 
 > In the standard reward model format, the model takes a prompt and response as input and generates a reward value. 
 > In contrast, our PAL model takes a prompt, two responses, and a user ID as input to predict the user’s choice.
