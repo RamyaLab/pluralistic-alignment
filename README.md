@@ -174,7 +174,7 @@ CUDA_VISIBLE_DEVICES=2 python -u main_pal_b_unseen.py \
           2>&1 >| ./logs/summary-b-cumulative-k2-mlp2-${i}.log
   done
 ```
-### 2. Given the well-trained PAL model above, we can generalize to new, unseen users with very few # preference pairs.
+### 2. Given the well-trained PAL model above, PAL can generalize to new, unseen users with very few # preference pairs.
 ```sh
 for j in 2 5 10 20 50 100; do
   for i in {1..5}; do
