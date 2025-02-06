@@ -6,7 +6,8 @@ PAL: Sample-Efficient Personalized Reward Modeling for Pluralistic Alignment
 
 [Daiwei Chen](https://chendaiwei-99.github.io), [Yi Chen](https://www.deepneural.network/), [Aniket Rege](https://aniketrege.github.io/), [Zhi Wang](https://zwang.org/), [Ramya Korlakai Vinayak](https://ramyakv.github.io/)
 
-[ 🌐 [PAL Project Page](https://pal-alignment.github.io/) ] [ 📜 [arXiv](https://arxiv.org/abs/2406.08469) ] [ 🤗 [HuggingFace (TODO)]() ] [ 📊 [Demo Datasets (TODO)]() ]
+[ 🌐 [PAL Project Page](https://pal-alignment.github.io/) ] [ 📜 [arXiv](https://arxiv.org/abs/2406.08469) ]
+[ 📊 [Persona Dataset](https://huggingface.co/datasets/kitkatdafu/persona_in_pal) ]
 
 # 📰 News
 
