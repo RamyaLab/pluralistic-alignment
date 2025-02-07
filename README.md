@@ -10,6 +10,32 @@ PAL: Sample-Efficient Personalized Reward Modeling for Pluralistic Alignment
 
 [ 📊 [Persona Dataset](https://huggingface.co/datasets/kitkatdafu/persona_in_pal); [Pick-a-Pic Dataset (embeddings)](https://huggingface.co/datasets/ramya-ml/pickapic-embeds);  [Pick-a-Filter Dataset (embeddings)](https://huggingface.co/datasets/ramya-ml/pick-a-filter-embeds/tree/main) ] 
 
+# 📑 Citations
+
+If you find **<u>*PAL*</u>** useful for your research and applications, please cite using these BibTeX:
+
+```
+@inproceedings{
+      chen2025pal,
+      title={{PAL}: Sample-Efficient Personalized Reward Modeling for Pluralistic Alignment},
+      author={Daiwei Chen and Yi Chen and Aniket Rege and Zhi Wang and Ramya Korlakai Vinayak},
+      booktitle={The Thirteenth International Conference on Learning Representations},
+      year={2025},
+      url={https://openreview.net/forum?id=1kFDrYCuSu}
+}
+
+@misc{
+      chen2024palpluralisticalignmentframework,
+      title={PAL: Pluralistic Alignment Framework for Learning from Heterogeneous Preferences}, 
+      author={Daiwei Chen and Yi Chen and Aniket Rege and Ramya Korlakai Vinayak},
+      year={2024},
+      eprint={2406.08469},
+      archivePrefix={arXiv},
+      primaryClass={cs.LG},
+      url={https://arxiv.org/abs/2406.08469}, 
+}
+```
+
 # 📰 News
 
 - 🔥 [NEW!] **PAL** has been accepted by **2025 ICLR** conference.
@@ -204,23 +230,6 @@ To load the standard reward model version of the PAL model, use the following fu
 
 - `load_pal_rm_a()`
 - `load_pal_rm_b()`
-
-# 📑 Citation
-
-If you find **<u>*PAL*</u>** useful for your research and applications, please cite using this BibTeX:
-
-```
-@misc{chen2024palpluralisticalignmentframework,
-      title={PAL: Pluralistic Alignment Framework for Learning from Heterogeneous Preferences}, 
-      author={Daiwei Chen and Yi Chen and Aniket Rege and Ramya Korlakai Vinayak},
-      year={2024},
-      eprint={2406.08469},
-      archivePrefix={arXiv},
-      primaryClass={cs.LG},
-      url={https://arxiv.org/abs/2406.08469}, 
-}
-```
-
 
 
 
