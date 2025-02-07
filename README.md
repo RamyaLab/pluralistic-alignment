@@ -8,7 +8,7 @@ PAL: Sample-Efficient Personalized Reward Modeling for Pluralistic Alignment
 
 [ 🌐 [PAL Project Page](https://pal-alignment.github.io/) ] [ 📜 [arXiv](https://arxiv.org/abs/2406.08469) ]
 
-[ 📊 [Persona Dataset](https://huggingface.co/datasets/kitkatdafu/persona_in_pal); [Pick-a-Pic Dataset (embeddings)](https://huggingface.co/datasets/ramya-ml/pickapic-embeds);  [Pick-a-Filter Dataset (embeddings)](TODO) ] 
+[ 📊 [Persona Dataset](https://huggingface.co/datasets/kitkatdafu/persona_in_pal); [Pick-a-Pic Dataset (embeddings)](https://huggingface.co/datasets/ramya-ml/pickapic-embeds);  [Pick-a-Filter Dataset (embeddings)](https://huggingface.co/datasets/ramya-ml/pick-a-filter-embeds/tree/main) ] 
 
 # 📰 News
 
