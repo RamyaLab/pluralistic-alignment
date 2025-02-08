@@ -9,6 +9,30 @@
 
 [ 📊 [Persona Dataset](https://huggingface.co/datasets/kitkatdafu/persona_in_pal); [Pick-a-Pic Dataset (embeddings)](https://huggingface.co/datasets/ramya-ml/pickapic-embeds);  [Pick-a-Filter Dataset (embeddings)](https://huggingface.co/datasets/ramya-ml/pick-a-filter-embeds) ] 
 
+# 📑 Citation
+
+If you find **<u>*PAL*</u>** useful for your research and applications, please consider citing:
+
+```
+@inproceedings{chen2025pal,
+      title={{PAL}: Sample-Efficient Personalized Reward Modeling for Pluralistic Alignment},
+      author={Chen, Daiwei and Chen, Yi and Rege, Aniket and Wang, Zhi and Vinayak, Ramya Korlakai},
+      booktitle={The Thirteenth International Conference on Learning Representations},
+      year={2025},
+      url={https://openreview.net/forum?id=1kFDrYCuSu}
+}
+
+@misc{chen2024palpluralisticalignmentframework,
+      title={PAL: Pluralistic Alignment Framework for Learning from Heterogeneous Preferences}, 
+      author={Daiwei Chen and Yi Chen and Aniket Rege and Ramya Korlakai Vinayak},
+      year={2024},
+      eprint={2406.08469},
+      archivePrefix={arXiv},
+      primaryClass={cs.LG},
+      url={https://arxiv.org/abs/2406.08469}, 
+}
+```
+
 # 📰 News
 
 - NEW 🔥 01/21/2025: **PAL** has been accepted at **ICLR 2025**.
@@ -204,19 +228,6 @@ To convert the PAL model to the standard scalar reward model, use the following 
 - `load_pal_rm_a()`
 - `load_pal_rm_b()`
 
-# 📑 Citation
-
-If you find **<u>*PAL*</u>** useful for your research and applications, please consider citing:
-
-```
-@inproceedings{chen2025pal,
-      title={{PAL}: Sample-Efficient Personalized Reward Modeling for Pluralistic Alignment},
-      author={Chen, Daiwei and Chen, Yi and Rege, Aniket and Wang, Zhi and Vinayak, Ramya Korlakai},
-      booktitle={The Thirteenth International Conference on Learning Representations},
-      year={2025},
-      url={https://openreview.net/forum?id=1kFDrYCuSu}
-}
-```
 
 
 
