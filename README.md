@@ -23,8 +23,7 @@ If you find **<u>*PAL*</u>** useful for your research and applications, please c
       url={https://openreview.net/forum?id=1kFDrYCuSu}
 }
 
-@misc{
-      chen2024palpluralisticalignmentframework,
+@misc{chen2024palpluralisticalignmentframework,
       title={PAL: Pluralistic Alignment Framework for Learning from Heterogeneous Preferences}, 
       author={Daiwei Chen and Yi Chen and Aniket Rege and Ramya Korlakai Vinayak},
       year={2024},
