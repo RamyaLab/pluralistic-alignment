@@ -15,10 +15,9 @@
 If you find **<u>*PAL*</u>** useful for your research and applications, please cite using these BibTeX:
 
 ```
-@inproceedings{
-      chen2025pal,
+@inproceedings{chen2025pal,
       title={{PAL}: Sample-Efficient Personalized Reward Modeling for Pluralistic Alignment},
-      author={Daiwei Chen and Yi Chen and Aniket Rege and Zhi Wang and Ramya Korlakai Vinayak},
+      author={Chen, Daiwei and Chen, Yi and Rege, Aniket and Wang, Zhi and Vinayak, Ramya Korlakai},
       booktitle={The Thirteenth International Conference on Learning Representations},
       year={2025},
       url={https://openreview.net/forum?id=1kFDrYCuSu}
