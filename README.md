@@ -229,6 +229,8 @@ To convert the PAL model to the standard scalar reward model, use the following 
 - `load_pal_rm_b()`
 
 
+## 🤗 Model Downloads
 
+[PAL-B-Large-OPT-350m](https://huggingface.co/daiweichen/pal-b-large-opt-350m) trained on the variant of Reddit TL;DR Summary Dataset 
 
 
