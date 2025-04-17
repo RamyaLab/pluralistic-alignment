@@ -64,6 +64,45 @@ def dataset_factory(dataset_name: str, ds_output_path, model_type: Literal['b', 
         torch.save(tokenized_val_ds, val_ds_path)
         torch.save(tokenized_test_ds, test_ds_path)
         return tokenized_train_ds, tokenized_val_ds, tokenized_test_ds
+    elif dataset_name == "SynthLabsAI/PERSONA":
+        from .summary_dataset_utils import preprocess_persona_ds
+
+        logger.critical(kwargs)
+        train_ds, test_ds = preprocess_persona_ds(
+            num_personas=kwargs["num_personas"],
+            test_question_split=kwargs["test_question_split"],
+        )
+        tokenized_train_ds = create_tokenized_ds(
+            train_ds, tokenizer, end_of_conversation_token, max_seq_len
+        )
+        tokenized_test_ds = create_tokenized_ds(
+            test_ds, tokenizer, end_of_conversation_token, max_seq_len
+        )
+        tokenized_train_ds, tokenized_val_ds = train_test_split(
+            tokenized_train_ds,
+            test_size=0.1,
+            random_state=42,
+            stratify=[x[0]["input"][0] for x in tokenized_train_ds],
+        )
+        return tokenized_train_ds, tokenized_val_ds, tokenized_test_ds
+    elif dataset_name == "SynthLabsAI/PERSONA_unseen":
+        from .summary_dataset_utils import preprocess_persona_unseen_ds
+
+        logger.critical(kwargs)
+        train_ds, test_ds = preprocess_persona_unseen_ds(
+            num_personas_train=kwargs["num_personas_train"],
+            num_personas_unseen=kwargs["num_personas_unseen"],
+            num_samples_per_persona=kwargs["num_samples_per_persona"],
+            test_question_split=kwargs["test_question_split"],
+        )
+        tokenized_train_ds = create_tokenized_ds(
+            train_ds, tokenizer, end_of_conversation_token, max_seq_len
+        )
+        tokenized_test_ds = create_tokenized_ds(
+            test_ds, tokenizer, end_of_conversation_token, max_seq_len
+        )
+        tokenized_val_ds = tokenized_test_ds  # just use the test set as validation set
+        return tokenized_train_ds, tokenized_val_ds, tokenized_test_ds
     else:
         raise ValueError(f"Dataset {dataset_name} not supported yet, please add the dataset to the dataset_factory.py file")
     

@@ -1,0 +1,7 @@
+dataset_name: 'SynthLabsAI/PERSONA'
+ds_output_path: './data'
+user_ids_path: './data/cache/summary_uids_persona.json'
+end_of_conversation_token: '<|endoftext|>'
+max_seq_len: 512
+num_personas: 50
+test_question_split: "both"

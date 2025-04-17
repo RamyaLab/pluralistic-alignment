@@ -1,0 +1,9 @@
+dataset_name: 'SynthLabsAI/PERSONA_unseen'
+ds_output_path: './data'
+user_ids_path: './data/cache/summary_uids_persona_unseen.json'
+end_of_conversation_token: '<|endoftext|>'
+max_seq_len: 512
+num_personas_train: 50
+num_personas_unseen: 10
+num_samples_per_persona: 10
+test_question_split: "train"

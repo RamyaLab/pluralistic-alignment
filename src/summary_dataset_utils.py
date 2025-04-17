@@ -3,6 +3,9 @@ import torch
 from joblib import dump
 import numpy as np
 import pandas as pd
+import uuid
+import torch
+from typing import Literal
 
 def generate_dataset_wo_embed(df, majority, minority):
     ds = []
@@ -125,4 +128,145 @@ def preprocess_unseen_ds(num_samples_per_unseen_train, **kwargs):
     df_train_unseen, df_test_unseen = custom_train_test_split(df_test_unseen_selected, 'worker', num_samples_per_unseen_train)
     train_ds_unseen = generate_dataset_wo_embed(df_train_unseen, majority_unseen, minority_unseen)
     test_ds_unseen = generate_dataset_wo_embed(df_test_unseen, majority_unseen, minority_unseen)
+    return train_ds_unseen, test_ds_unseen
+
+
+def generate_persona_dataset(df):
+    ds = []
+    for _, row in df.iterrows():
+        persona_id = row["persona_ids"]
+        prompt_text = row["instruction"]
+        original_text = row["original"]
+        pref_text = row["data"]
+        if None in (original_text, pref_text):
+            continue
+
+        # row["data"] is always preferred over row["original"] so randomize the left/right ordering
+        if np.random.rand() < 0.5:
+            left_text, right_text = original_text, pref_text
+            y = 1
+        else:
+            left_text, right_text = pref_text, original_text
+            y = -1
+
+        sample = {}
+        sample["uid"] = persona_id
+        sample["prompt"] = "Human: " + prompt_text + " Assistant:"
+        sample["left"] = " " + left_text
+        sample["right"] = " " + right_text
+        sample["y"] = y
+        ds.append(sample)
+    return ds
+
+
+def preprocess_persona_ds(
+    num_personas, test_question_split: Literal["train", "test", "both"]
+):
+    dataset = load_dataset("SynthLabsAI/PERSONA", split="train")
+    dataset = dataset.to_pandas()
+    # replace persona description with UUID
+    uuid_map = {
+        p: str(uuid.uuid5(namespace=uuid.NAMESPACE_DNS, name=p))
+        for p in dataset["persona"].unique()
+    }
+    dataset["persona_ids"] = dataset["persona"].map(uuid_map)
+
+    df_train = dataset[dataset["question type"] == "train"]
+
+    # find the dataset train/test questions and filter test_df based on the input question_type
+    train_questions = set(
+        dataset[dataset["question type"] == "train"]["instruction"].unique()
+    )
+    test_questions = (
+        set(dataset[dataset["question type"] == "test"]["instruction"].unique())
+        - train_questions
+    )
+    if test_question_split == "train":
+        df_test = dataset[
+            (dataset["question type"] == "test")
+            & (dataset["instruction"].isin(train_questions))
+        ]
+    elif test_question_split == "test":
+        df_test = dataset[
+            (dataset["question type"] == "test")
+            & (dataset["instruction"].isin(test_questions))
+        ]
+    elif test_question_split == "both":
+        df_test = dataset[dataset["question type"] == "test"]
+    else:
+        raise ValueError(f"Invalid split: {test_question_split}")
+
+    # sample random personas from the dataset
+    personas = df_train["persona_ids"].sample(num_personas, random_state=42)
+    df_train_personas = df_train[df_train["persona_ids"].isin(personas)]
+    df_test_personas = df_test[df_test["persona_ids"].isin(personas)]
+    # save the persona ids to a file
+    torch.save(personas.values.tolist(), "data/cache/summary_uids_persona.json")
+
+    train_ds = generate_persona_dataset(df_train_personas)
+    test_ds = generate_persona_dataset(df_test_personas)
+    return train_ds, test_ds
+
+
+def preprocess_persona_unseen_ds(
+    num_personas_train,
+    num_personas_unseen,
+    num_samples_per_persona,
+    test_question_split: Literal["train", "test", "both"],
+):
+    dataset = load_dataset("SynthLabsAI/PERSONA", split="train")
+    dataset = dataset.to_pandas()
+    # replace persona description with UUID
+    uuid_map = {
+        p: str(uuid.uuid5(namespace=uuid.NAMESPACE_DNS, name=p))
+        for p in dataset["persona"].unique()
+    }
+    dataset["persona_ids"] = dataset["persona"].map(uuid_map)
+
+    df_train = dataset[dataset["question type"] == "train"]
+
+    # find the dataset train/test questions and filter test_df based on the input question_type
+    train_questions = set(
+        dataset[dataset["question type"] == "train"]["instruction"].unique()
+    )
+    test_questions = (
+        set(dataset[dataset["question type"] == "test"]["instruction"].unique())
+        - train_questions
+    )
+    if test_question_split == "train":
+        df_test = dataset[
+            (dataset["question type"] == "test")
+            & (dataset["instruction"].isin(train_questions))
+        ]
+    elif test_question_split == "test":
+        df_test = dataset[
+            (dataset["question type"] == "test")
+            & (dataset["instruction"].isin(test_questions))
+        ]
+    elif test_question_split == "both":
+        df_test = dataset[dataset["question type"] == "test"]
+    else:
+        raise ValueError(f"Invalid question type: {test_question_split}")
+
+    # get the personas used for training the model (same state as preprocess_persona_ds) and sample from the remaining unseen personas
+    train_personas = df_train["persona_ids"].sample(num_personas_train, random_state=42)
+    unseen_personas = df_train[df_train["persona_ids"].isin(train_personas) == False][
+        "persona_ids"
+    ].sample(num_personas_unseen, random_state=42)
+    torch.save(
+        unseen_personas.values.tolist(), "data/cache/summary_uids_persona_unseen.json"
+    )
+
+    # sample random questions from each unseen persona
+    df_train_unseen = (
+        df_train[df_train["persona_ids"].isin(unseen_personas)]
+        .groupby("persona_ids")
+        .apply(lambda x: x.sample(num_samples_per_persona, random_state=42))
+        .reset_index(drop=True)
+    )
+    # evaluate on all questions
+    df_test_unseen = df_test[df_test["persona_ids"].isin(unseen_personas)]
+
+    train_ds_unseen = generate_persona_dataset(df_train_unseen)
+    test_ds_unseen = generate_persona_dataset(df_test_unseen)
     return train_ds_unseen, test_ds_unseen
