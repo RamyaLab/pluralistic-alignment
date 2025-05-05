@@ -1,0 +1,45 @@
+
+preference_learner_params:
+  d_p: 1024   # the latent dims of prompt
+  d_x: 1024   # the latent dims of items
+  d: 1024     # the dims of the preference embedding space
+  k: 1     # the number of groups
+  pref_learner_type: "angle"   # Literal["dist","dist_normalization","angle","norm"]
+  cnct_arch: "identity"
+  proj_arch: "mlp2-relu-dropout5-residual"
+  sfx_type: "softmax"   # Literal["gumbel_softmax", "softmax"]
+  sfx_temperature: 1
+  is_temperature_learnable: False # bool
+  is_gumbel_hard: None  # Optional[bool]=None
+  seed: 42
+
+optimizer_hyperparams:
+  connector_p:
+    lr: 0.005
+    weight_decay: 0.01
+  connector_x:
+    lr: 0.005
+    weight_decay: 0.01
+  projector:
+    lr: 0.0001
+    weight_decay: 0.01
+  P:
+    lr: 0.005
+    weight_decay: 0.0
+  W:
+    lr: 0.005
+    weight_decay: 0.0
+  logit_scale:
+    lr: 0.1   # the best hyperparameter among [0.001, 0.01, 0.1]
+    weight_decay: 0.0
+  temperature:
+    lr: 0.1
+    weight_decay: 0.0
+
+learner_mode: "new_pair"  # Literal["new_pair", "new_pair_finetune_weight", "new_user"]
+loss_type: "CE"        # Literal["hinge", "logistic", "CE", "hinge_w", "logistic_w", "CE_w"]
+upper_bound: 4
+lmd: 1
+max_epochs_new_pair: 10
+max_epochs_new_user: 10
+warmup_ratio: 0.01

@@ -1,0 +1,11 @@
+root_dir_path: "/mnt/sdb1/path/to/alignment-data"
+
+ds_path: ${root_dir_path}/data/pickapic_v2-openclip-h14-dataset
+instr_path: ${root_dir_path}/data_instruction/pickapic_v2-original-instruction
+
+train_instr_file_path: ${instr_path}/train_ranking_ids.pt
+val_instr_file_path: ${instr_path}/val_ranking_ids_seen_users.pt
+test_instr_file_path: ${instr_path}/test_ranking_ids_seen_users.pt
+
+num_workers: 16
+batch_size: 256
