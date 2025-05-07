@@ -1,8 +1,10 @@
 name: pal
 channels:
+  - pytorch
   - conda-forge
 dependencies:
   - ipython=8.22.2
+  - ipywidgets
   - lightning-flash=0.6.0
   - numpy=1.26.4
   - pandas=2.2.1
@@ -14,8 +16,7 @@ dependencies:
   - scikit-learn=1.5.2
   - wandb
   - datasets=2.19.2
-  - pip
-  - pip:
-    - torch==2.2.1
-    - torchaudio==2.2.1
-    - torchvision==0.17.1
+  - pytorch
+  - torchvision
+  - torchaudio
+  - pytorch-cuda>=11.8
