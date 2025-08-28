@@ -70,6 +70,8 @@ class BasePrefLearner(nn.Module):
         if "llm" not in fix_modules:
             self.trainable_params["llm"] = self.llm.parameters()
         else:
+            for p in self.llm.parameters():
+                p.requires_grad = False
             self.llm.eval()
         if "itemLearnerProjector" not in fix_modules:
             self.trainable_params["projector_f"].extend(self.item_learner.projector.parameters())
